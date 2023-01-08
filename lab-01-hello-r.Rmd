@@ -16,7 +16,12 @@ library(datasauRus)
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+datasaurus_dozen %>%
+  count(dataset) %>%
+  print(13)
+
+dataframe total: 1846x3
+13 data sets and each has 142
 
 ### Exercise 2
 
@@ -49,13 +54,19 @@ To finish, clean up the narrative by removing these instructions.
 
 
 ```{r plot-star}
+plot_star <- datasaurus_dozen %>%
+  filter(dataset=="star")
+
+ggplot(data=plot_star, mapping=aes(x=x,y=y))+
+  geom_point()
 
 ```
 
 I'm some filler text, you should replace me with more meaningful text...
 
 ```{r cor-star}
-
+plot_star %>%
+  summarize(r=cor(x,y))
 ```
 
 ### Exercise 4
@@ -64,12 +75,18 @@ Add code and narrative as needed.
 Note that two R chunks are given but they are not labeled.
 Use the convention from above to name them appropriately.
 
-```{r}
+```{r plot-circle}
+plot_circle <- datasaurus_dozen %>%
+  filter(dataset=="circle")
+
+ggplot(data=plot_circle, mapping=aes(x=x , y=y))+
+  geom_point()
 
 ```
 
-```{r}
-
+```{r cor-circle}
+plot_circle %>%
+  summarize(r=cor(x,y))
 ```
 
 ### Exercise 5
