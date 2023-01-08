@@ -2,7 +2,9 @@
 title: "Lab 01 - Hello R"
 author: "Qilin Zhang"
 date: "2023/1/2"
-output: github_document
+output: 
+  html_document: 
+    theme: journal
 ---
 
 ## Load packages and data
@@ -20,8 +22,8 @@ datasaurus_dozen %>%
   count(dataset) %>%
   print(13)
 
-dataframe total: 1846x3
-13 data sets and each has 142
+datasaurus_dozen total: 1846x3
+13 data sets and each has 142 data points
 
 ### Exercise 2
 
@@ -94,7 +96,19 @@ plot_circle %>%
 Add code and narrative as needed.
 
 To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, green C+.
+```{r everything all at once- plot}
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+  geom_point()+
+  facet_wrap(~ dataset, ncol = 3) +
+  theme(legend.position = "none")
+```
 
+```{r everything all at once - cor}
+  datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(r = cor(x, y)) %>%
+  print(13)
+```
 
 
 ## Bonus Tips by Yoo Ri
