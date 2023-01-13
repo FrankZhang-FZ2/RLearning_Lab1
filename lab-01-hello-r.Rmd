@@ -5,6 +5,8 @@ date: "2023/1/2"
 output: 
   html_document: 
     theme: journal
+    fig_width: 9
+    fig_height: 7
 ---
 
 ## Load packages and data
@@ -18,6 +20,7 @@ library(datasauRus)
 
 ### Exercise 1
 
+dim(datasaurus_dozen)
 datasaurus_dozen %>%
   count(dataset) %>%
   print(13)
@@ -49,11 +52,6 @@ dino_data %>%
 
 ### Exercise 3
 
-Add code and narrative as needed.
-Note that the R chunks are labeled with `plot-star` and `cor-star` to provide spaces to place the code for plotting and calculating the correlation coefficient.
-To finish, clean up the narrative by removing these instructions.
-
-
 
 ```{r plot-star}
 plot_star <- datasaurus_dozen %>%
@@ -64,7 +62,7 @@ ggplot(data=plot_star, mapping=aes(x=x,y=y))+
 
 ```
 
-I'm some filler text, you should replace me with more meaningful text...
+The correlation are very similar between star data and Dino data. They are both very close to none (r=-0.06)
 
 ```{r cor-star}
 plot_star %>%
@@ -73,9 +71,6 @@ plot_star %>%
 
 ### Exercise 4
 
-Add code and narrative as needed.
-Note that two R chunks are given but they are not labeled.
-Use the convention from above to name them appropriately.
 
 ```{r plot-circle}
 plot_circle <- datasaurus_dozen %>%
@@ -86,6 +81,8 @@ ggplot(data=plot_circle, mapping=aes(x=x , y=y))+
 
 ```
 
+The correlation are very similar between star data and Dino data. They are both very close to none (r=-0.06 to -0.07)
+
 ```{r cor-circle}
 plot_circle %>%
   summarize(r=cor(x,y))
@@ -93,12 +90,9 @@ plot_circle %>%
 
 ### Exercise 5
 
-Add code and narrative as needed.
-
-To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, green C+.
-```{r everything all at once- plot}
+```{r everything all at once- plot, fig.height=7, fig.width=9}
 ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
-  geom_point()+
+  geom_point(size=1)+
   facet_wrap(~ dataset, ncol = 3) +
   theme(legend.position = "none")
 ```
